@@ -1,0 +1,53 @@
+<head>
+    <style>
+        .Grid {
+        display: flex;
+        flex-wrap: nowrap;
+        }
+
+        .Grid-cell {
+        flex: 1;
+        }
+
+        .Grid-cell.u-4of10 {
+        flex: 0 0 40%;
+        }
+
+        .Grid-cell.u-5of10 {
+        flex: 0 0 50%;
+        }
+
+        .Grid-cell.u-1of10 {
+        flex: 0 0 10%;
+        }
+
+    </style>
+</head>
+
+<div class="Grid jumbotron" style="padding: 0.5em 0.6em">
+    <div class="Grid-cell u-1of10">
+        <img height=50 width=350 src="https://www.mcd.gov.om/images/logo.png">
+    </div>
+    <div class="Grid-cell" style="text-align: center">
+        <h2> HomePage </h2>
+    </div>
+    <div class="Grid-cell u-1of10">
+        <p><button class="btn btn-info btn-lg" [routerLink]="['/login']">Logout</button></p>
+    </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+  <h2>Hi {{currentUser.username}}! This is our HomePage</h2>
+  <h3>All registered users:</h3>
+  <ul>
+      <li *ngFor="let user of users">
+          Username: {{user.username}}
+          - Password: {{ user.password }} - 
+          <a (click)="confirm(user.id)">Delete</a>
+      </li>
+  </ul>
+  <p-growl [value]="msgs"></p-growl>
+  <p-confirmDialog></p-confirmDialog>
+</div>
+
+<a [routerLink]="['/register']" class="btn btn-link">Register</a>
